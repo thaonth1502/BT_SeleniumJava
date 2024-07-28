@@ -39,7 +39,7 @@ public class LocatorsCRM {
     public static String calenderStartDate = "//input[@id='start_date']";
     public static String calenderDeadline = "//input[@id='deadline']";
     public static String inputTags = "//input[@placeholder='Tag']";
-    public static String inputDescipton = "//iframe[@id='description_ifr']";
+    public static String inputDescription = "//iframe[@id='description_ifr']";
     public static String checkboxSendEmail = "//input[@id='send_created_email']";
     public static String btn_Save = "//button[normalize-space()='Save']";
 
