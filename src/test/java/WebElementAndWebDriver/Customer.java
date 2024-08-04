@@ -36,9 +36,10 @@ public class Customer extends BaseTest {
         driver.findElement(By.xpath(LocatorsCRM.inputWebsite)).sendKeys("CMCGlobal.vn");
         driver.findElement(By.xpath(LocatorsCRM.dropdownGroups)).click();
         sleep(1);
-//        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys("VIP");
-//        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys(Keys.ENTER);
-//        sleep(1);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys("VIP");
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys(Keys.ENTER);
+        sleep(1);
+        driver.findElement(By.xpath(LocatorsCRM.dropdownGroups)).click();
         driver.findElement(By.xpath(LocatorsCRM.dropdownCurrency)).click();
         driver.findElement(By.xpath(LocatorsCRM.inputSearchCurrency)).sendKeys("USD");
         sleep(1);
