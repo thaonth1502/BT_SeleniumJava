@@ -1,18 +1,24 @@
 package WebElementAndWebDriver;
 
+import common.BaseTest;
 import locators.LocatorsCRM;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.Keys;
 
-public class Customer {
-    WebDriver driver;
 
-    public Customer(WebDriver driver) {
-        this.driver = driver;
+import static WebElementAndWebDriver.Login.login;
+
+public class Customer extends BaseTest {
+
+    public static void main(String[] args) {
+        createDriver();
+        login();
+        createNewCustomer();
+        verifyCustomerCreated();
+        closeDriver();
     }
+    public static void createNewCustomer(){
 
-    public void createNewCustomer(){
         driver.findElement(By.xpath(LocatorsCRM.menuCustomer)).click();
         //verify Customer Page
         driver.findElement(By.xpath(LocatorsCRM.headerCustomerPage)).isDisplayed();
@@ -23,39 +29,47 @@ public class Customer {
         driver.findElement(By.xpath(LocatorsCRM.nameTabCustomer)).isDisplayed();
 
         //input data into fields
-        driver.findElement(By.xpath(LocatorsCRM.inputCompany)).sendKeys("CMC Global");
+        driver.findElement(By.xpath(LocatorsCRM.inputCompany)).sendKeys("[04082024] - CMC Global");
+        sleep(1);
         driver.findElement(By.xpath(LocatorsCRM.inputVATNumber)).sendKeys("15");
         driver.findElement(By.xpath(LocatorsCRM.inputPhoneNumber)).sendKeys("098765432");
         driver.findElement(By.xpath(LocatorsCRM.inputWebsite)).sendKeys("CMCGlobal.vn");
         driver.findElement(By.xpath(LocatorsCRM.dropdownGroups)).click();
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys("VIP");
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).submit();
+        sleep(1);
+//        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys("VIP");
+//        driver.findElement(By.xpath(LocatorsCRM.inputSearchGroup)).sendKeys(Keys.ENTER);
+//        sleep(1);
         driver.findElement(By.xpath(LocatorsCRM.dropdownCurrency)).click();
         driver.findElement(By.xpath(LocatorsCRM.inputSearchCurrency)).sendKeys("USD");
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchCurrency)).submit();
+        sleep(1);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchCurrency)).sendKeys(Keys.ENTER);
+        sleep(1);
         driver.findElement(By.xpath(LocatorsCRM.dropdownDefaultLanguage)).click();
+        sleep(1);
 
-        Select select = new Select(driver.findElement(By.xpath(LocatorsCRM.selectDefaultLanguage)));
-        select.selectByVisibleText("Vietnamese");
-
+        driver.findElement(By.xpath("//span[normalize-space()='Vietnamese']")).click();
+        sleep(1);
         driver.findElement(By.xpath(LocatorsCRM.inputAddress)).sendKeys("11 Duy Tan");
         driver.findElement(By.xpath(LocatorsCRM.inputCity)).sendKeys("Hanoi");
         driver.findElement(By.xpath(LocatorsCRM.inputState)).sendKeys("Cau Giay");
         driver.findElement(By.xpath(LocatorsCRM.inputZipCode)).sendKeys("100000");
-        driver.findElement(By.xpath(LocatorsCRM.inputCompany)).sendKeys("CMC Global (ThaoNTH)");
         driver.findElement(By.xpath(LocatorsCRM.dropdownCountry)).click();
+        sleep(1);
         driver.findElement(By.xpath(LocatorsCRM.inputSearchCountry)).sendKeys("Vietnam");
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchCountry)).submit();
+        sleep(1);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchCountry)).sendKeys(Keys.ENTER);
+        sleep(1);
 
         //click Save button
         driver.findElement(By.xpath(LocatorsCRM.buttonSave)).click();
     }
 
-    public void verifyCustomerCreated(){
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchCustomerPage)).sendKeys("CMC Global (ThaoNTH)");
-        driver.findElement(By.xpath(LocatorsCRM.inputSearchCustomerPage)).submit();
+    public static void verifyCustomerCreated(){
+        driver.findElement(By.xpath(LocatorsCRM.menuCustomer)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchCustomerPage)).sendKeys("[04082024] - CMC Global");
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchCustomerPage)).sendKeys(Keys.ENTER);
 
-        driver.findElement(By.xpath("//a[normalize-space()='CMC Global (ThaoNTH)']")).isDisplayed();
+        driver.findElement(By.xpath("//a[normalize-space()='[04082024] - CMC Global']")).isDisplayed();
 
     }
 }
